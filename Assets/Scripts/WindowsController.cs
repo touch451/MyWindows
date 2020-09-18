@@ -9,46 +9,65 @@ public class WindowsController : MonoBehaviour
     [SerializeField]
     private Canvas canvas = null;
 
-    [SerializeField]
-    private GameObject windowPref = null;
-
+    [HideInInspector]
     public GameObject curOpenWindow = null;
 
-    Animator anim = null;
+    public enum WindowType
+    {
+        NO_TYPE,
+        START_GAME,
+        SETTINGS,
+        STORE,
+        EXIT,
+        QUIT_MENU
+    }
 
-    //public enum WindowsType
-    //{
-    //    START_GAME,
-    //    SETTINGS,
-    //    STORE,
-    //    EXIT,
-    //    CLOSE_WINDOW
-    //}
+    private Dictionary<WindowType, string> windowDict = new Dictionary<WindowType, string>()
+    {
+        {WindowType.START_GAME, "Windows/StartWindow"},
+        {WindowType.SETTINGS, "Windows/SettingsWindow"},
+        {WindowType.STORE, "Windows/StoreWindow"},
+        {WindowType.EXIT, "Windows/ExitWindow"},
+        {WindowType.QUIT_MENU, "Windows/QuitMenuWindow"}
+    };
+
 
     private void Awake()
     {
         if (Instance == null)
         {
+            DontDestroyOnLoad(gameObject);
             Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void Update()
+    {
+        if (canvas == null)
+        {
+            canvas = GameObject.FindObjectOfType<Canvas>();
         }
     }
 
-    public void OpenWindow()
+    public void OpenWindow(GameObject window)
     {
         if (curOpenWindow != null)
         {
             Destroy(curOpenWindow);
+            //Resources.UnloadUnusedAssets();
         }
-
-        curOpenWindow = Instantiate(windowPref, canvas.transform);
-        anim = curOpenWindow.GetComponent<Animator>();
+        curOpenWindow = Instantiate(window, canvas.transform);
     }
 
-    public void CloseWindow()
+    public GameObject GetWindowByWindowType(WindowType type)
     {
-        if (curOpenWindow != null)
+        if (!windowDict.TryGetValue(type, out string pathToResource))
         {
-            anim.SetTrigger("Close");
+            throw new UnityException($"Не удалось найти путь к ресурсу Window по типу.");
         }
+        return Resources.Load<GameObject>(pathToResource);
     }
 }

@@ -1,4 +1,8 @@
 *
-!Assets/*
+!Assets/Animations/*
+!Assets/Prefabs/*
+!Assets/Resources/*
+!Assets/Scenes/*
+!Assets/Scripts/*
 !Packages/*
 !ProjectSettings/*

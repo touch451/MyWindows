@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class WindowsController : MonoBehaviour
+public class WindowsController
 {
-    public static WindowsController Instance;
+    public static WindowsController Instance { private set; get; }
 
     [SerializeField]
     private Canvas canvas = null;
 
+    // ----------------------------------- Чтобы открывалось только одно окно
     //[HideInInspector]
     //public GameObject curOpenWindow = null;
 
@@ -31,25 +33,15 @@ public class WindowsController : MonoBehaviour
         {WindowType.QUIT_MENU, "QuitMenuWindow"}
     };
 
-
-    private void Awake()
+    public WindowsController()
     {
-        if (Instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        SceneManager.activeSceneChanged += TryFindCanvasOnChangedScene;
+        Instance = this;
     }
-    private void Update()
+
+    private void TryFindCanvasOnChangedScene(Scene arg0, Scene arg1)
     {
-        if (canvas == null)
-        {
-            canvas = GameObject.FindObjectOfType<Canvas>();
-        }
+        canvas = GameObject.FindObjectOfType<Canvas>();
     }
 
     public void OpenWindow(WindowType windowType)
@@ -62,13 +54,15 @@ public class WindowsController : MonoBehaviour
         }
         else
         {
+            GameObject.Instantiate(window, canvas.transform);
+
+            // ----------------------------------- Чтобы открывалось только одно окно
             //if (curOpenWindow != null)
             //{
-            //    Destroy(curOpenWindow);
+            //    GameObject.Destroy(curOpenWindow);
             //    Resources.UnloadUnusedAssets();
             //}
-            //curOpenWindow = Instantiate(window, canvas.transform);
-            Instantiate(window, canvas.transform);
+            //curOpenWindow = GameObject.Instantiate(window, canvas.transform);
         }
     }
 
@@ -82,7 +76,7 @@ public class WindowsController : MonoBehaviour
         return ResourceController.Instance.LoadResourceWindow(nameWindow);
     }
 
-    
+
 
 }
 

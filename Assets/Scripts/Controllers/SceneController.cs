@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneController : MonoBehaviour
+public class SceneController
 {
-    public static SceneController Instance = null;
+    public static SceneController Instance { private set; get; }
     public enum SceneType
     {
         NO_TYPE,
@@ -19,17 +20,9 @@ public class SceneController : MonoBehaviour
         {SceneType.GAME, "Game"},
     };
 
-    private void Awake()
+    public SceneController()
     {
-        if (Instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
     }
 
     public void LoadScene(SceneType sceneType)

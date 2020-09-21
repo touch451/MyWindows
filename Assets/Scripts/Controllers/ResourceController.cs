@@ -2,21 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceController : MonoBehaviour
+public class ResourceController
 {
-    public static ResourceController Instance = null;
+    public static ResourceController Instance { private set; get; }
 
-    private void Awake()
+    public ResourceController()
     {
-        if (Instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
     }
 
     public GameObject LoadResourceWindow(string nameWindow)

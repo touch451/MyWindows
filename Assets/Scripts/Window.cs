@@ -6,18 +6,11 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Animator))]
 public class Window : MonoBehaviour
 {
-    //public static Window Instance;
-
     [SerializeField]
     Button closeButton = null;
 
     private void Awake()
     {
-        //if (Instance == null)
-        //{
-        //    Instance = this;
-        //}
-
         closeButton.onClick.AddListener(() => CloseWindow());
     }
 

@@ -4,5 +4,6 @@
 !Assets/Resources/*
 !Assets/Scenes/*
 !Assets/Scripts/*
+!Assets/Scripts/Controllers/*
 !Packages/*
 !ProjectSettings/*

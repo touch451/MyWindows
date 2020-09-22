@@ -1,30 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 public class Window : MonoBehaviour
 {
-    public static Window Instance;
+    [SerializeField]
+    Button closeButton = null;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        
+        closeButton.onClick.AddListener(() => CloseWindow());
     }
 
     public void CloseWindow()
     {
-        WindowsController.Instance.curOpenWindow.GetComponent<Animator>().SetTrigger("Close");
+        GetComponent<Animator>().SetTrigger("Close");
     }
-
 
     private void DestroyWindow()  //----------- Используется в анимации закрытия окна
     {
-        Destroy(WindowsController.Instance.curOpenWindow);
+        Destroy(gameObject);
         Resources.UnloadUnusedAssets();
     }
 

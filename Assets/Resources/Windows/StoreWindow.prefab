@@ -260,7 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closeButton: {fileID: 5668412156585565573}
   optionCloseWindowOnTap: 1
-  optionCloseWindowOnKeyBack: 0
+  optionCloseWindowOnKeyBack: 1
 --- !u!1 &8745437662052876367
 GameObject:
   m_ObjectHideFlags: 0

@@ -403,5 +403,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closeButton: {fileID: 1119470014961410206}
-  optionCloseWindowOnTap: 1
-  optionCloseWindowOnKeyBack: 0
+  optionCloseWindowOnTap: 0
+  optionCloseWindowOnKeyBack: 1

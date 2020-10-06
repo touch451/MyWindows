@@ -7,11 +7,11 @@ public class WindowsController
 {
     public static WindowsController Instance { private set; get; }
 
-    [SerializeField]
     private Canvas canvas = null;
 
+    public List<GameObject> openWindowsList = new List<GameObject>();
+
     // ----------------------------------- Чтобы открывалось только одно окно
-    //[HideInInspector]
     //public GameObject curOpenWindow = null;
 
     public enum WindowType
@@ -54,7 +54,9 @@ public class WindowsController
         }
         else
         {
-            GameObject.Instantiate(window, canvas.transform);
+            GameObject newWindow = GameObject.Instantiate(window, canvas.transform);
+            openWindowsList.Add(newWindow);
+            Debug.LogWarning(openWindowsList.Count);  //----------------------------------Кол-во открытых окон
 
             // ----------------------------------- Чтобы открывалось только одно окно
             //if (curOpenWindow != null)
@@ -74,6 +76,19 @@ public class WindowsController
         }
 
         return ResourceController.Instance.LoadResourceWindow(nameWindow);
+    }
+
+    public GameObject TryGetCurOpenWindow()
+    {
+        if (openWindowsList.Count > 0)
+        {
+            return openWindowsList[openWindowsList.Count - 1];
+        }
+        else
+        {
+            return null;
+        }
+
     }
 
 

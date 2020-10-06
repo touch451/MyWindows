@@ -16,16 +16,16 @@ public class ControllersHolder : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
             Instance = this;
+
         }
         else
         {
             Destroy(gameObject);
+
         }
 
         SceneController = new SceneController();
         WindowsController = new WindowsController();
         ResourceController = new ResourceController();
     }
-
-
 }

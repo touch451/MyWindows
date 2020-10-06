@@ -9,6 +9,12 @@ public class Window : MonoBehaviour
     [SerializeField]
     Button closeButton = null;
 
+    [SerializeField]
+    public bool optionCloseWindowOnTap;
+
+    [SerializeField]
+    public bool optionCloseWindowOnKeyBack;
+
     private void Awake()
     {
         closeButton.onClick.AddListener(() => CloseWindow());
@@ -21,8 +27,9 @@ public class Window : MonoBehaviour
 
     private void DestroyWindow()  //----------- Используется в анимации закрытия окна
     {
+        WindowsController.Instance.openWindowsList.Remove(gameObject);
+        Debug.LogError(WindowsController.Instance.openWindowsList.Count);  //----------------------------------Кол-во открытых окон
         Destroy(gameObject);
         Resources.UnloadUnusedAssets();
     }
-
 }

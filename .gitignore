@@ -1,12 +1,4 @@
 *
 !Assets/**
-!Assets/Animations/*
-!Assets/Prefabs/*
-!Assets/Prefabs/Buttons/*
-!Assets/Resources/*
-!Assets/Resources/Windows/*
-!Assets/Scenes/*
-!Assets/Scripts/*
-!Assets/Scripts/Controllers/*
 !Packages/**
 !ProjectSettings/**

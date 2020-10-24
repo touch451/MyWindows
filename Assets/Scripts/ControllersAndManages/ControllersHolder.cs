@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ControllersHolder : MonoBehaviour
 {
@@ -9,19 +7,16 @@ public class ControllersHolder : MonoBehaviour
     public WindowsController WindowsController { private set; get; }
     public ResourceController ResourceController { private set; get; }
 
-
     private void Awake()
     {
         if (Instance == null)
         {
             DontDestroyOnLoad(gameObject);
             Instance = this;
-
         }
         else
         {
             Destroy(gameObject);
-
         }
 
         SceneController = new SceneController();

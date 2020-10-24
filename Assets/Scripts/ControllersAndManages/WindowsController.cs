@@ -9,10 +9,7 @@ public class WindowsController
 
     private Canvas canvas = null;
 
-    public List<GameObject> openWindowsList = new List<GameObject>();
-
-    // ----------------------------------- Чтобы открывалось только одно окно
-    //public GameObject curOpenWindow = null;
+    private List<Window> openWindowsList = new List<Window>();
 
     public enum WindowType
     {
@@ -36,8 +33,6 @@ public class WindowsController
     public WindowsController()
     {
         SceneManager.activeSceneChanged += TryFindCanvasOnChangedScene;
-        Background.OnTap += CloseWindowOnTapBackground;
-        InputManage.OnInputKeyBack += CloseWindowOnInputKeyBack;
         Instance = this;
     }
 
@@ -48,7 +43,7 @@ public class WindowsController
 
     public void OpenWindow(WindowType windowType)
     {
-        GameObject window = GetWindowByWindowType(windowType);
+        Window window = GetWindowByWindowType(windowType);
 
         if (window == null)
         {
@@ -56,74 +51,43 @@ public class WindowsController
         }
         else
         {
-            GameObject newWindow = GameObject.Instantiate(window, canvas.transform);
+            Window newWindow = GameObject.Instantiate(window, canvas.transform);
             openWindowsList.Add(newWindow);
             Debug.LogWarning("Открыто окон: " + openWindowsList.Count);  //----------------------------------Кол-во открытых окон
-
-            // ----------------------------------- Чтобы открывалось только одно окно
-            //if (curOpenWindow != null)
-            //{
-            //    GameObject.Destroy(curOpenWindow);
-            //    Resources.UnloadUnusedAssets();
-            //}
-            //curOpenWindow = GameObject.Instantiate(window, canvas.transform);
         }
     }
 
-    public GameObject GetWindowByWindowType(WindowType type)
+    private Window GetWindowByWindowType(WindowType type)
     {
         if (!windowDict.TryGetValue(type, out string nameWindow))
         {
             throw new UnityException($"Не удалось найти имя Window в словаре.");
         }
+        GameObject loadWindow = ResourceController.Instance.LoadResourceWindow(nameWindow);
 
-        return ResourceController.Instance.LoadResourceWindow(nameWindow);
+        return loadWindow.GetComponent<Window>();
     }
 
-    public GameObject TryGetCurOpenWindow()
+    public bool TryGetCurOpenWindow(out Window window)
     {
         if (openWindowsList.Count > 0)
         {
-            return openWindowsList[openWindowsList.Count - 1];
+            window = openWindowsList[openWindowsList.Count - 1];
         }
         else
         {
-            return null;
+            window = null;
         }
+        return window != null;
     }
 
-    public void CloseWindowOnTapBackground()
+    public void RemoveOpenWindowsList(Window window)
     {
-        GameObject objWindow = TryGetCurOpenWindow();
-
-        if (objWindow != null)
-        {
-            Window window = objWindow.GetComponent<Window>();
-
-            if (window.optionCloseWindowOnTap)
-            {
-                window.CloseWindow();
-            }
-        }
+        openWindowsList.Remove(window);
     }
 
-    public void CloseWindowOnInputKeyBack()
+    public int CountOpenWindowsList()
     {
-        GameObject objWindow = TryGetCurOpenWindow();
-
-        if (objWindow != null)
-        {
-            Window window = objWindow.GetComponent<Window>();
-
-            if (window.optionCloseWindowOnKeyBack)
-            {
-                window.CloseWindow();
-            }
-        }
+        return openWindowsList.Count;
     }
-
-
-
 }
-
-

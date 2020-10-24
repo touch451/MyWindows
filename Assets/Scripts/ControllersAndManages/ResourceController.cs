@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ResourceController
 {
@@ -13,8 +11,15 @@ public class ResourceController
 
     public GameObject LoadResourceWindow(string nameWindow)
     {
-        return Resources.Load<GameObject>($"Windows/{nameWindow}");
+        GameObject loadWindow = Resources.Load<GameObject>($"Windows/{nameWindow}");
+
+        if (loadWindow == null)
+        {
+            throw new UnityException($"Ресурс {nameWindow} не найден.");
+        }
+        else
+        {
+            return loadWindow;
+        }
     }
-
-
 }

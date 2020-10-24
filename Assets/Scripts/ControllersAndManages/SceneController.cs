@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -39,7 +37,7 @@ public class SceneController
         }
     }
 
-    public string GetSceneBySceneType(SceneType type)
+    private string GetSceneBySceneType(SceneType type)
     {
         if (!sceneDict.TryGetValue(type, out string sceneName))
         {

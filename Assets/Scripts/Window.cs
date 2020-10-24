@@ -1,35 +1,89 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using WC = WindowsController;
 
 [RequireComponent(typeof(Animator))]
 public class Window : MonoBehaviour
 {
     [SerializeField]
-    Button closeButton = null;
+    private Button closeButton = null;
 
     [SerializeField]
-    public bool optionCloseWindowOnTap;
+    private bool optionCloseWindowOnTap;
 
     [SerializeField]
-    public bool optionCloseWindowOnKeyBack;
+    private bool optionCloseWindowOnKeyBack;
+
+    private Background background = null;
 
     private void Awake()
     {
         closeButton.onClick.AddListener(() => CloseWindow());
+        InitBackground();
+        InitKeyBack();
     }
 
-    public void CloseWindow()
+    private void InitBackground()
+    {
+        if (optionCloseWindowOnTap)
+        {
+            background = GameObject.FindGameObjectWithTag("Background").GetComponent<Background>();
+            background.OnTap += CloseWindowOnTapBackground;
+        }
+    }
+
+    private void InitKeyBack()
+    {
+        if (optionCloseWindowOnKeyBack)
+        {
+            InputManage.Instance.OnInputKeyBack += CloseWindowOnInputKeyBack;
+        }
+    }
+
+    private void CloseWindowOnTapBackground()
+    {
+        if (WC.Instance.TryGetCurOpenWindow(out Window lastWindow))
+        {
+            if (lastWindow.optionCloseWindowOnTap)
+            {
+                lastWindow.CloseWindow();
+            }
+        }
+    }
+
+    private void CloseWindowOnInputKeyBack()
+    {
+        if (WC.Instance.TryGetCurOpenWindow(out Window lastWindow))
+        {
+            if (lastWindow.optionCloseWindowOnKeyBack)
+            {
+                lastWindow.CloseWindow();
+            }
+        }
+    }
+
+    private void CloseWindow()
     {
         GetComponent<Animator>().SetTrigger("Close");
     }
 
     private void DestroyWindow()  //----------- Используется в анимации закрытия окна
     {
-        WindowsController.Instance.openWindowsList.Remove(gameObject);
-        Debug.LogError("Открыто окон: " + WindowsController.Instance.openWindowsList.Count);  //----------------------------------Кол-во открытых окон
+        WC.Instance.RemoveOpenWindowsList(this);
+        Debug.LogError("Открыто окон: " + WC.Instance.CountOpenWindowsList());  //----------------------------------Кол-во открытых окон
         Destroy(gameObject);
         Resources.UnloadUnusedAssets();
+    }
+
+    private void OnDestroy()
+    {
+        if (optionCloseWindowOnTap)
+        {
+            background.OnTap -= CloseWindowOnTapBackground;
+        }
+        if (optionCloseWindowOnKeyBack)
+        {
+            InputManage.Instance.OnInputKeyBack -= CloseWindowOnInputKeyBack;
+        }
     }
 }

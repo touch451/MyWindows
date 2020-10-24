@@ -127,6 +127,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 206436530224037726}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &432174053 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2125601693790869998, guid: 971f7a88be3613942a37bf228a8c55c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1115092518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &619770103 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9039468615584975136, guid: 1af1493ad7c94fb468f340706f281d1b,
@@ -374,7 +380,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1014147398
+--- !u!1001 &1115092518
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -489,16 +495,10 @@ PrefabInstance:
     - target: {fileID: 6863544155230777767, guid: 971f7a88be3613942a37bf228a8c55c1,
         type: 3}
       propertyPath: m_Name
-      value: BackgroundImage
+      value: Background
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 971f7a88be3613942a37bf228a8c55c1, type: 3}
---- !u!224 &1014147399 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2125601693790869998, guid: 971f7a88be3613942a37bf228a8c55c1,
-    type: 3}
-  m_PrefabInstance: {fileID: 1014147398}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1226509544
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +589,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1014147399}
+  - {fileID: 432174053}
   - {fileID: 619770103}
   - {fileID: 1285817028}
   - {fileID: 1349373517}

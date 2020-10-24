@@ -419,7 +419,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1137302425}
+  - {fileID: 1720576955}
   - {fileID: 1009095512}
   - {fileID: 678287930}
   - {fileID: 5038914401236787984}
@@ -648,7 +648,7 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1009095511}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1137302424
+--- !u!1001 &1720576954
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -763,15 +763,15 @@ PrefabInstance:
     - target: {fileID: 6863544155230777767, guid: 971f7a88be3613942a37bf228a8c55c1,
         type: 3}
       propertyPath: m_Name
-      value: BackgroundImage
+      value: Background
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 971f7a88be3613942a37bf228a8c55c1, type: 3}
---- !u!224 &1137302425 stripped
+--- !u!224 &1720576955 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2125601693790869998, guid: 971f7a88be3613942a37bf228a8c55c1,
     type: 3}
-  m_PrefabInstance: {fileID: 1137302424}
+  m_PrefabInstance: {fileID: 1720576954}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1889104681
 GameObject:

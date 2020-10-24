@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1356677057382424441}
   - component: {fileID: 4025111001266069277}
   m_Layer: 5
-  m_Name: Background
+  m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -403,5 +403,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closeButton: {fileID: 1119470014961410206}
-  optionCloseWindowOnTap: 0
+  optionCloseWindowOnTap: 1
   optionCloseWindowOnKeyBack: 1

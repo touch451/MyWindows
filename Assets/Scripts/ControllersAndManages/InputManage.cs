@@ -1,24 +1,24 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManage : MonoBehaviour
 {
-    public static Action OnInputKeyBack = null;
+    public Action OnInputKeyBack = null;
+    public static InputManage Instance { private set; get; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            OnInputKeyBack.Invoke();
+            if (OnInputKeyBack != null)
+            {
+                OnInputKeyBack.Invoke();
+            }
         }
     }
-
-
-
-    
 }
-
-
-

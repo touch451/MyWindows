@@ -110,6 +110,7 @@ RectTransform:
   m_Children:
   - {fileID: 440782171801521192}
   - {fileID: 7165948679082376506}
+  - {fileID: 2558204663601592543}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -186,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closeButton: {fileID: 6770047135781807757}
-  optionCloseWindowOnTap: 0
+  optionCloseWindowOnTap: 1
   optionCloseWindowOnKeyBack: 1
 --- !u!1 &3627092778115701245
 GameObject:
@@ -215,13 +216,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3627092778115701245}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 88765482845357858}
-  m_Father: {fileID: 7165948679082376506}
-  m_RootOrder: 0
+  m_Father: {fileID: 2824811575783417531}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -421,7 +422,7 @@ GameObject:
   - component: {fileID: 4660874408723126634}
   - component: {fileID: 7323190738008545550}
   m_Layer: 5
-  m_Name: Background
+  m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -437,8 +438,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2558204663601592543}
+  m_Children: []
   m_Father: {fileID: 2824811575783417531}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
